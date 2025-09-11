@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WinFormsLibrary\WinFormsLibrary.csproj" />
+    <ProjectReference Include="..\Tools.Common\Tools.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

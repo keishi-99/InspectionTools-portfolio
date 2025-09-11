@@ -5,9 +5,10 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
+using Tools.Common;
+using Tools.Common.InstList;
 using WindowsInput;
-using WinFormsLibrary;
-using static WinFormsLibrary.Win32Wrapper;
+using static Tools.Common.Win32Wrapper;
 
 namespace EL4001 {
     /// <summary>
@@ -166,6 +167,7 @@ namespace EL4001 {
                 { 15, ("SOI+3.2MA,OPR", "F5R6S3.2E-3O1EOC", "3.2mA") },
             };
         }
+        // 機器初期設定
         private void FormatSet() {
             _instDcs.InstCommand = _instDcs.SignalType switch {
                 2 => "SIR3,SOI+0,SBY,*OPC?",
@@ -206,8 +208,8 @@ namespace EL4001 {
                 HotKeyChekBox.IsChecked = false;
                 VisibleProgressImage(true);
 
-                CheckDmmId();
                 SelectInst();
+                CheckDmmId();
                 FormatSet();
 
                 var devices = new[] { _instDcs, _instDmm01, _instDmm02, _instOsc };
@@ -237,7 +239,10 @@ namespace EL4001 {
         }
         // DMMのIDチェック処理
         private void CheckDmmId() {
-            if ((_instDmm01.Index == _instDmm02.Index) && _instDmm01.Index >= 1) {
+            var indices = new[] { _instDmm01.Index, _instDmm02.Index }
+                .Where(i => i >= 1); // 未選択(0以下)は無視
+
+            if (indices.Count() != indices.Distinct().Count()) {
                 throw new Exception("同じ測定器が選択されています。");
             }
         }
@@ -412,7 +417,7 @@ namespace EL4001 {
             if (_isProcessing) { return; }
 
             try {
-                var output = await Task.Run(() => ReadDmm(_instDmm01));
+                var output = await ReadDmm(_instDmm01);
 
                 var sim = new InputSimulator();
                 sim.Keyboard.TextEntry(output.ToString("0.000"));
@@ -428,7 +433,7 @@ namespace EL4001 {
             if (_isProcessing) { return; }
 
             try {
-                var output = await Task.Run(() => ReadDmm(_instDmm02));
+                var output = await ReadDmm(_instDmm02);
 
                 var sim = new InputSimulator();
                 sim.Keyboard.TextEntry(output.ToString("0.0000"));
@@ -443,7 +448,7 @@ namespace EL4001 {
             if (_isProcessing) { return; }
 
             try {
-                var output = await Task.Run(() => ReadDmm(_instDmm02));
+                var output = await ReadDmm(_instDmm02);
 
                 var sim = new InputSimulator();
                 sim.Keyboard.TextEntry(output.ToString("0.0000"));
@@ -464,7 +469,7 @@ namespace EL4001 {
             if (_isProcessing) { return; }
 
             try {
-                var output = await Task.Run(() => ReadOsc(_instOsc, 1));
+                var output = await ReadOsc(_instOsc, 1);
 
                 var sim = new InputSimulator();
                 sim.Keyboard.TextEntry((output * 1000).ToString("0.000"));
@@ -480,7 +485,7 @@ namespace EL4001 {
             if (_isProcessing) { return; }
 
             try {
-                var output = await Task.Run(() => ReadOsc(_instOsc, 2));
+                var output = await ReadOsc(_instOsc, 2);
 
                 var sim = new InputSimulator();
                 sim.Keyboard.TextEntry((output * 1000).ToString("0.000"));

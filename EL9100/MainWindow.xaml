@@ -75,7 +75,7 @@
             Unchecked="HotKeyChekBox_Unchecked" />
         <CheckBox
             x:Name="TopMostCheckBox"
-            Grid.Row="4"
+            Grid.Row="2"
             Grid.Column="1"
             Width="60"
             HorizontalAlignment="Center"
@@ -87,7 +87,7 @@
 
         <Button
             x:Name="InstListButton"
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="1"
             Width="60"
             HorizontalAlignment="Center"

@@ -229,8 +229,14 @@ namespace PAF5 {
                 var tasks = devices.Select(device => ConnectDeviceAsync(device));
                 await Task.WhenAll(tasks);
 
-                if (!string.IsNullOrEmpty(_instFg.VisaAddress)) { FgRotateRangeTextBox.Text = "OFF"; }
-                if (!string.IsNullOrEmpty(_instOsc.VisaAddress)) { OscRotateRangeTextBox.Text = "1"; }
+                if (!string.IsNullOrEmpty(_instFg.VisaAddress)) {
+                    FgRotateRangeTextBox.Text = "OFF";
+                    FgRotateButton.IsEnabled = true;
+                }
+                if (!string.IsNullOrEmpty(_instOsc.VisaAddress)) {
+                    OscRotateRangeTextBox.Text = "1";
+                    OscRotateButton.IsEnabled = true;
+                }
 
                 Dmm01ComboBox.IsEnabled = false;
                 Dmm02ComboBox.IsEnabled = false;
@@ -239,8 +245,6 @@ namespace PAF5 {
                 ConnectButton.IsEnabled = false;
                 ReleaseButton.IsEnabled = true;
                 InstListButton.IsEnabled = false;
-                FgRotateButton.IsEnabled = true;
-                OscRotateButton.IsEnabled = true;
 
             } catch (Exception ex) {
                 Release();

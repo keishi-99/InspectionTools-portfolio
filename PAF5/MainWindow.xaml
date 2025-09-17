@@ -127,7 +127,8 @@
             Height="30"
             HorizontalAlignment="Center"
             Click="OscRotateButton_Click"
-            Content="OSC" />
+            Content="OSC"
+            IsEnabled="False" />
         <Button
             x:Name="FgRotateButton"
             Grid.Row="6"
@@ -137,7 +138,8 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Click="FgRotateButton_Click"
-            Content="FG" />
+            Content="FG"
+            IsEnabled="False" />
 
         <TextBox
             x:Name="OscRotateRangeTextBox"
@@ -171,8 +173,6 @@
             TextWrapping="Wrap">
             <Run Language="ja-jp" Text="00:00:00" />
         </TextBlock>
-
-
 
 
         <Common:WaitingCircle

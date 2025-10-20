@@ -105,7 +105,10 @@ namespace EL1812 {
             UpdateComboBox(OscComboBox, OscList, "オシロスコープ", [2], "[OSC]");
         }
         private void UpdateComboBox(ComboBox comboBox, ObservableCollection<string> collection, string category, List<int> signalTypes, string name) {
-            if (_dataTable == null) return;
+            if (_dataTable == null) {
+                return;
+            }
+
             collection.Clear();
             collection.Add(name);
 
@@ -950,7 +953,6 @@ namespace EL1812 {
         private void CountNext_Click(object sender, RoutedEventArgs e) { CountIncrement(1); }
         private void CountLockCheckBox_Checked(object sender, RoutedEventArgs e) { CountLockToggle(); }
         private void CountLockCheckBox_Unchecked(object sender, RoutedEventArgs e) { CountLockToggle(); }
-
 
     }
 }

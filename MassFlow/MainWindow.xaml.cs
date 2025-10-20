@@ -1420,5 +1420,6 @@ namespace MassFlow {
         private void SerialNext_Click(object sender, RoutedEventArgs e) { SerialIncrement(1); }
 
         private void FgNumberComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { FgPanelVisible(); }
+
     }
 }

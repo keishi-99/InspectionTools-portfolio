@@ -25,8 +25,4 @@
     <ProjectReference Include="..\Tools.Common\Tools.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Common\sine.ico" />
-  </ItemGroup>
-
 </Project>

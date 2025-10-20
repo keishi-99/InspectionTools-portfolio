@@ -140,7 +140,6 @@
             Content="測定器" />
 
 
-
         <Common:WaitingCircle
             x:Name="ProgressRing"
             Grid.Row="1"

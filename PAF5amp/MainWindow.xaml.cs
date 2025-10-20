@@ -102,7 +102,10 @@ namespace PAF5amp {
             UpdateComboBox(OscComboBox, OscList, "オシロスコープ", [2], "[OSC]");
         }
         private void UpdateComboBox(ComboBox comboBox, ObservableCollection<string> collection, string category, List<int> signalTypes, string name) {
-            if (_dataTable == null) return;
+            if (_dataTable == null) {
+                return;
+            }
+
             collection.Clear();
             collection.Add(name);
 
@@ -460,5 +463,6 @@ namespace PAF5amp {
         private void HotKeyChekBox_Unchecked(object sender, RoutedEventArgs e) { ClearHotKey(); }
         private void TopMostCheckBox_Checked(object sender, RoutedEventArgs e) { Topmost = true; }
         private void TopMostCheckBox_Unchecked(object sender, RoutedEventArgs e) { Topmost = false; }
+
     }
 }

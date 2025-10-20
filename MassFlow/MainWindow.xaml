@@ -451,8 +451,6 @@
         </StackPanel>
 
 
-
-
         <Common:WaitingCircle
             x:Name="ProgressRing"
             Grid.Row="2"

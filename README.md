@@ -103,7 +103,6 @@ dotnet run --project InspectionTools/InspectionTools.csproj
 
 ## スクリーンショット
 
-<!-- TODO: アプリのスクリーンショットをここに追加する -->
 ![メイン画面](docs/images/main.png)
 
 ![EL9240](docs/images/EL9240.png)
